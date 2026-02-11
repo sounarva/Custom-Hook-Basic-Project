@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: regular;
+  src: url('../public/HelveticaNeueMedium.otf');
+}
+@font-face {
+  font-family: bold;
+  src: url('../public/HelveticaNeueBold.otf');
+}
+
+.regularFont{
+  font-family: regular;
+  font-weight: 400;
+}
+.boldFont{
+  font-family: bold;
+  font-weight: 600;
+}
+
+.products::-webkit-scrollbar,
+.cartItems::-webkit-scrollbar{
+  display: none;
+}
