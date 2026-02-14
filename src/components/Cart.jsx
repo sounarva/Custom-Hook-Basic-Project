@@ -1,8 +1,21 @@
 import { FaArrowAltCircleRight } from "react-icons/fa";
 import CartItem from './CartItem';
 import { IoBagCheckOutline } from "react-icons/io5";
+import { useCartStore } from "../store/cartStore";
+import { useMemo } from "react";
 
-const Cart = ({ cart, removeFromCart, updateQuantity, totalAmt }) => {
+const Cart = () => {
+    const cartState = useCartStore((state) => state.cart)
+    const cart = Array.isArray(cartState) ? cartState : []
+    const totalAmt = useMemo(() => {
+        return Number(
+            cart.reduce((total, item) => {
+                const amount = item.price * item.quantity
+                return total + amount
+            }, 0)
+        ).toFixed(2)
+    }, [cart])
+
     return (
         <div className='w-full h-102 bg-zinc-800 border-l-5 border-blue-500 rounded-2xl p-5 relative'>
             <h2 className='regularFont text-2xl border-b border-white/50 pb-2 mb-3 flex items-center gap-3'>Product Summary <FaArrowAltCircleRight className='text-2xl' /></h2>
@@ -14,8 +27,6 @@ const Cart = ({ cart, removeFromCart, updateQuantity, totalAmt }) => {
                         <CartItem
                             key={item.id}
                             item={item}
-                            removeFromCart={removeFromCart}
-                            updateQuantity={updateQuantity}
                         />
                     ))}
                 </div>

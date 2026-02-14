@@ -2,8 +2,11 @@ import React from 'react'
 import { IoMdAdd } from "react-icons/io";
 import { IoMdRemove } from "react-icons/io";
 import { MdDelete } from 'react-icons/md';
+import { useCartStore } from "../store/cartStore";
 
-const CartItem = ({ item, removeFromCart, updateQuantity }) => {
+const CartItem = ({ item }) => {
+    const removeFromCart = useCartStore((state) => state.removeFromCart)
+    const updateQuantity = useCartStore((state) => state.updateQuantity)
     return (
         <>
             <div className='px-4 flex flex-col items-start gap-2 border-l-4 border-blue-500 bg-zinc-900 rounded-xl p-3'>

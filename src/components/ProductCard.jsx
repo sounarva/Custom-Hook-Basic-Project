@@ -1,7 +1,9 @@
 import React from 'react'
 import { MdOutlineAddShoppingCart } from "react-icons/md";
+import { useCartStore } from '../store/cartStore';
 
-const ProductCard = ({item , addToCart}) => {
+const ProductCard = ({item}) => {
+    const addToCart = useCartStore((state) => state.addToCart)
     return (
         <div id={item.id} className='w-72 p-5 border border-white/30 rounded-2xl text-white flex flex-col items-center gap-5'>
             <h2 className='boldFont text-2xl text-center'>{item.name}</h2>
